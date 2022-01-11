@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>badretdinov.ruslan</groupId>
+    <artifactId>pageobjectpagefactorytrainig</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+
+        <!-- Encoding project -->
+        <encoding.type>UTF-8</encoding.type>
+        <project.build.sourceEncoding>${encoding.type}</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>${encoding.type}</project.reporting.outputEncoding>
+        <file.encoding>${encoding.type}</file.encoding>
+
+        <!-- JDK version project -->
+        <maven.compiler.source>15</maven.compiler.source>
+        <maven.compiler.target>15</maven.compiler.target>
+
+        <!-- Dependencies Version -->
+        <selenium-java.version>3.141.59</selenium-java.version>
+        <junit-jupiter.version>5.8.1</junit-jupiter.version>
+        <junit-platform-launcher.version>1.8.1</junit-platform-launcher.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+
+        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <maven-dependency-plugin.version>2.8</maven-dependency-plugin.version>
+
+    </properties>
+
+    <dependencies>
+
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium-java.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-safari-driver</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher -->
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <version>${junit-platform-launcher.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <encoding>${encoding.type}</encoding>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <!-- Настройка, если тест выбило, то он либо весь сворачивается(false), либо просто останавливается на месте затыка -->
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <includes>
+                        <include>**/*Test.java</include>
+                    </includes>
+                    <!-- excludes - исключение из прогона -->
+                    <argLine>
+                        -Dfile.encoding=${encoding.type}
+                    </argLine>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${maven-dependency-plugin.version}</version>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
