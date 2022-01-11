@@ -89,6 +89,8 @@
                         <include>**/*Test.java</include>
                     </includes>
                     <!-- excludes - исключение из прогона -->
+
+                    <!-- тоже самое, что и в строке мавен прописать  -->
                     <argLine>
                         -Dfile.encoding=${encoding.type}
                     </argLine>
