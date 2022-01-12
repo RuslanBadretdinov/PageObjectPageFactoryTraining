@@ -1,34 +1,34 @@
 package ru.ibs.tests.base;
 
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.concurrent.TimeUnit;
+import ru.ibs.framework.managers.DriverManager;
+import ru.ibs.framework.managers.InitManager;
+import ru.ibs.framework.managers.PageManager;
+import ru.ibs.framework.managers.TestPropertiesManager;
+import ru.ibs.framework.utils.PropertyConstants;
 
 public class BaseTests {
 
-    protected WebDriver driver;
-    protected WebDriverWait wait;
-    protected Actions actions;
+    protected DriverManager driverManager = DriverManager.getInstance();
+    protected PageManager pageManager = PageManager.getInstance();
+    protected TestPropertiesManager testPropertiesManager = TestPropertiesManager.getInstance();
+
+    @BeforeAll
+    public static void beforeAll() {
+        InitManager.initFramework();
+    }
 
     @BeforeEach
     public void before() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-        driver = new ChromeDriver();
-        actions = new Actions(driver);
-        driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-        wait = new WebDriverWait(driver, 30, 2000);
-        String baseUrl = "https://www.google.com";
-        driver.get(baseUrl);
+        driverManager.getDriver().get(testPropertiesManager.getProperty(PropertyConstants.BASE_URL));
     }
 
 
-    @AfterEach
-    void after() { driver.quit(); }
+    @AfterAll
+    public static void afterAll() {
+        InitManager.quitFramework();
+    }
 
 }
