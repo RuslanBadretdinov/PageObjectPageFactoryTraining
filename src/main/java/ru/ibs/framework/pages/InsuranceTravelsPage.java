@@ -1,27 +1,29 @@
 package ru.ibs.framework.pages;
 
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.WebDriver;
+import org.junit.jupiter.api.DisplayName;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class InsuranceTravelsPage extends BasePage{
 
-    @FindBy(xpath = "//h1[@data-test-id]")
+    @FindBy(xpath = "//div[contains(@class, 'page-teaser-dict__row')]//h1")
     protected WebElement title;
 
     @FindBy(xpath = "//span[text() = 'Оформить онлайн']/../../a[@data-test-id]")
     protected WebElement buttonCheckOutOnline;
 
+    @Step
+    @DisplayName("Нажатие на открытие страницы")
     public InsuranceTravelsPage checkOpenPage() {
-        Assertions.assertEquals("Заголовок отсутствует, не соответствует требуемому",
-                "Купить туристическую страховку для выезда за границу  — СберБанк", (driverManager.getDriver().getTitle()));
+        Assertions.assertEquals(title.getText() ,
+                "Страхование путешественников1", "Заголовок отсутствует, не соответствует требуемому");
         return pageManager.getInsuranceTravelsPage();
     }
 
+    @Step
+    @DisplayName("В JUnit5  это название не из алюр отчёта, а что-то другое")
     public Object checkOutOnline() {
         buttonCheckOutOnline.click();
         System.out.println("Следующая страница");

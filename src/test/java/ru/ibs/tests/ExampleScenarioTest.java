@@ -1,5 +1,6 @@
 package ru.ibs.tests;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.ibs.framework.pages.InsuranceTravelsPage;
 import ru.ibs.framework.pages.StartPage;
@@ -11,6 +12,7 @@ public class ExampleScenarioTest extends BaseTests {
     InsuranceTravelsPage insuranceTravelsPage = new InsuranceTravelsPage();
 
     @Test
+    @DisplayName("Проверка страхование путешественников - название тест-кейса (из JUnit5)")
     public void exampleScenario() {
 
 //        startPage.closeCookies();

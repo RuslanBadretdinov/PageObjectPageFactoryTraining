@@ -14,8 +14,10 @@ public class InitManager {
 
     public static void initFramework() {
         driverManager.getDriver().manage().window().maximize();
-        driverManager.getDriver().manage().timeouts().pageLoadTimeout(Integer.parseInt(props.getProperty(PropertyConstants.PAGE_LOAD_TIMEOUT)), TimeUnit.SECONDS);
-        driverManager.getDriver().manage().timeouts().implicitlyWait(Integer.parseInt(props.getProperty(PropertyConstants.IMPLICITLY)), TimeUnit.SECONDS);
+        driverManager.getDriver().manage().timeouts()
+                .pageLoadTimeout(Integer.parseInt(props.getProperty(PropertyConstants.PAGE_LOAD_TIMEOUT)), TimeUnit.SECONDS);
+        driverManager.getDriver().manage().timeouts()
+                .implicitlyWait(Integer.parseInt(props.getProperty(PropertyConstants.IMPLICITLY_WAIT)), TimeUnit.SECONDS);
     }
 
     public static void quitFramework() {

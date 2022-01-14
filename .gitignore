@@ -1,6 +1,7 @@
 #FouldersIgnore
 .idea
-/target/
+target
+.allure
 
 #FilesIgnore
 *.iml

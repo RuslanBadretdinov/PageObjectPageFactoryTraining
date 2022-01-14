@@ -22,13 +22,21 @@
 
         <!-- Dependencies Version -->
         <selenium-java.version>3.141.59</selenium-java.version>
+
+        <!-- должны быть одинаковой версии -->
         <junit-jupiter.version>5.8.1</junit-jupiter.version>
         <junit-platform-launcher.version>1.8.1</junit-platform-launcher.version>
+
+        <allure-junit5.version>2.13.6</allure-junit5.version>
+
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
 
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <maven-dependency-plugin.version>2.8</maven-dependency-plugin.version>
 
+        <aspectj.version>1.9.7</aspectj.version>
+
+        <allure-maven.version>2.10.0</allure-maven.version>
     </properties>
 
     <dependencies>
@@ -59,8 +67,17 @@
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-launcher</artifactId>
             <version>${junit-platform-launcher.version}</version>
-            <scope>test</scope>
+<!--            <scope>test</scope>-->
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit5 -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit5</artifactId>
+            <version>${allure-junit5.version}</version>
+<!--            <scope>test</scope>-->
+        </dependency>
+
 
     </dependencies>
 
@@ -83,8 +100,10 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
+
                     <!-- Настройка, если тест выбило, то он либо весь сворачивается(false), либо просто останавливается на месте затыка -->
                     <testFailureIgnore>true</testFailureIgnore>
+
                     <includes>
                         <include>**/*Test.java</include>
                     </includes>
@@ -93,14 +112,71 @@
                     <!-- тоже самое, что и в строке мавен прописать  -->
                     <argLine>
                         -Dfile.encoding=${encoding.type}
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+<!--                        -Dallure.results.directory=${project.build.directory}/reports/allure-results   - где сохранить allure result-->
                     </argLine>
+                    <!-- Существует ли листенер на JUnit4 (Да, но не используют обычно), сделал пока как в документации -->
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>ru.ibs.framework.utils.MyAllureListener</value>
+                        </property>
+                    </properties>
+
+                    <systemProperties>
+                        <property>
+                            <name>junit.jupiter.extensions.autodetection.enabled</name>
+                            <value>true</value>
+                        </property>
+                    </systemProperties>
+                    <!-- Можно прописать в args -->
+                    <systemPropertyVariables>
+                        <allure.results.directory>${project.build.directory}/reports/allure-results</allure.results.directory>
+                    </systemPropertyVariables>
                 </configuration>
+
+                <dependencies>
+                    <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>${maven-dependency-plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>${allure-maven.version}</version>
+
+                <configuration>
+                    <reportVersion>${allure-junit5.version}</reportVersion>
+                    <resultsDirectory>${project.build.directory}/reports/allure-results</resultsDirectory>
+                    <reportDirectory>${project.build.directory}/reports/allure-reports</reportDirectory>
+                </configuration>
+
+                <!-- Можно без этого, если на прямую задать команду -->
+                <!-- mvn clean allure:report -->
+                <executions>
+                    <execution>
+                        <id>allure-plugin</id>
+                        <!-- фаза ниже, чем тест -->
+                        <phase>install</phase>
+                        <goals>
+                            <!-- <goal>report</goal> не сразу-->
+                            <!-- <goal>serve</goal> -->
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
             </plugin>
 
         </plugins>
