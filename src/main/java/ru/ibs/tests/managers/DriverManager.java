@@ -1,11 +1,8 @@
-package ru.ibs.framework.managers;
+package ru.ibs.tests.managers;
 
-import org.apache.commons.exec.OS;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import ru.ibs.framework.utils.PropertyConstants;
+import ru.ibs.tests.utils.PropertyConstants;
 
 import java.util.concurrent.TimeUnit;
 

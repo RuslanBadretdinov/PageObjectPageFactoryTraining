@@ -3,11 +3,11 @@ package ru.ibs.tests.base;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import ru.ibs.framework.managers.DriverManager;
-import ru.ibs.framework.managers.InitManager;
-import ru.ibs.framework.managers.PageManager;
-import ru.ibs.framework.managers.TestPropertiesManager;
-import ru.ibs.framework.utils.PropertyConstants;
+import ru.ibs.tests.managers.DriverManager;
+import ru.ibs.tests.managers.InitManager;
+import ru.ibs.tests.managers.PageManager;
+import ru.ibs.tests.managers.TestPropertiesManager;
+import ru.ibs.tests.utils.PropertyConstants;
 
 public class BaseTests {
 
@@ -22,7 +22,7 @@ public class BaseTests {
 
     @BeforeEach
     public void before() {
-        driverManager.getDriver().get(testPropertiesManager.getProperty(PropertyConstants.BASE_URL));
+        //driverManager.getDriver().get(testPropertiesManager.getProperty(PropertyConstants.BASE_URL));
     }
 
 

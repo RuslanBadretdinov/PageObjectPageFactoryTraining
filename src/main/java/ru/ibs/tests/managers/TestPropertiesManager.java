@@ -1,6 +1,4 @@
-package ru.ibs.framework.managers;
-
-import org.openqa.selenium.WebDriver;
+package ru.ibs.tests.managers;
 
 import java.io.FileInputStream;
 import java.io.IOException;

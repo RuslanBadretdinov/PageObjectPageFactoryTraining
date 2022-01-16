@@ -1,6 +1,5 @@
-package ru.ibs.framework.pages;
+package ru.ibs.tests.pages;
 
-import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,13 +17,13 @@ public class StartPage extends BasePage{
     @FindBy(xpath = "//a[contains(@class, 'menu__link_second')]")
     private List<WebElement> listSubMenu;
 
-    @Step("Закрытие cookies")
+    //@Step("Закрытие cookies")
     public StartPage closeCookies() {
         cookiesBtnClose.click();
         return pageManager.getStartPage();
     }
 
-    @Step("Выбор базового меню '{nameMenu}'")
+    //@Step("Выбор базового меню '{nameMenu}'")
     public StartPage selectBaseMenuText(String nameMenu) {
         for (WebElement item : listBaseMenu) {
             if(item.getText().contains(nameMenu)) {
@@ -36,7 +35,7 @@ public class StartPage extends BasePage{
         return pageManager.getStartPage();
     }
 
-    @Step
+    //@Step
     public InsuranceTravelsPage selectSubMenuByText(String nameSubMenu) {
         for (WebElement item : listSubMenu) {
             if(item.getText().contains(nameSubMenu)) {

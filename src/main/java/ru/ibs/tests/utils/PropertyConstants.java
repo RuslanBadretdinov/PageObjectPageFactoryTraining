@@ -1,4 +1,4 @@
-package ru.ibs.framework.utils;
+package ru.ibs.tests.utils;
 
 //Ключи для Properties
 public class PropertyConstants {

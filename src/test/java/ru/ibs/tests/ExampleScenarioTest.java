@@ -2,8 +2,8 @@ package ru.ibs.tests;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.ibs.framework.pages.InsuranceTravelsPage;
-import ru.ibs.framework.pages.StartPage;
+import ru.ibs.tests.pages.InsuranceTravelsPage;
+import ru.ibs.tests.pages.StartPage;
 import ru.ibs.tests.base.BaseTests;
 
 public class ExampleScenarioTest extends BaseTests {
@@ -26,7 +26,7 @@ public class ExampleScenarioTest extends BaseTests {
                 .closeCookies()
                 .selectBaseMenuText("Страхование")
                 .selectSubMenuByText("Путешествия")
-                .checkOpenPage()
+                .checkOpenPage("Страхование путешественников")
                 .checkOutOnline();
     }
 }

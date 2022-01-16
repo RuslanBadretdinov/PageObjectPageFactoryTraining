@@ -1,10 +1,10 @@
-package ru.ibs.framework.pages;
+package ru.ibs.tests.pages;
 
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import ru.ibs.framework.managers.DriverManager;
-import ru.ibs.framework.managers.PageManager;
+import ru.ibs.tests.managers.DriverManager;
+import ru.ibs.tests.managers.PageManager;
 
 //Класс с методами без локаторов для всех классов
 public abstract class BasePage {

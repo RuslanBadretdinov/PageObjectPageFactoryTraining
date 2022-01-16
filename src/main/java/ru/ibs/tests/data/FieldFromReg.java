@@ -1,4 +1,4 @@
-package ru.ibs.framework.data;
+package ru.ibs.tests.data;
 
 public enum FieldFromReg {
     A,

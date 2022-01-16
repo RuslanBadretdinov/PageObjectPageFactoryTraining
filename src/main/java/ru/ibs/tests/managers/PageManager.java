@@ -1,8 +1,7 @@
-package ru.ibs.framework.managers;
+package ru.ibs.tests.managers;
 
-import org.openqa.selenium.WebDriver;
-import ru.ibs.framework.pages.InsuranceTravelsPage;
-import ru.ibs.framework.pages.StartPage;
+import ru.ibs.tests.pages.InsuranceTravelsPage;
+import ru.ibs.tests.pages.StartPage;
 
 public class PageManager {
 

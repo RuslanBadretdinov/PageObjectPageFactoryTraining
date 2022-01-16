@@ -1,6 +1,5 @@
-package ru.ibs.framework.pages;
+package ru.ibs.tests.pages;
 
-import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.openqa.selenium.WebElement;
@@ -14,15 +13,15 @@ public class InsuranceTravelsPage extends BasePage{
     @FindBy(xpath = "//span[text() = 'Оформить онлайн']/../../a[@data-test-id]")
     protected WebElement buttonCheckOutOnline;
 
-    @Step
+    //@Step
     @DisplayName("Нажатие на открытие страницы")
-    public InsuranceTravelsPage checkOpenPage() {
+    public InsuranceTravelsPage checkOpenPage(String s1) {
         Assertions.assertEquals(title.getText() ,
-                "Страхование путешественников1", "Заголовок отсутствует, не соответствует требуемому");
+                s1, "Заголовок отсутствует, не соответствует требуемому");
         return pageManager.getInsuranceTravelsPage();
     }
 
-    @Step
+    //@Step
     @DisplayName("В JUnit5  это название не из алюр отчёта, а что-то другое")
     public Object checkOutOnline() {
         buttonCheckOutOnline.click();

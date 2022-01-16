@@ -1,6 +1,6 @@
-package ru.ibs.framework.managers;
+package ru.ibs.tests.managers;
 
-import ru.ibs.framework.utils.PropertyConstants;
+import ru.ibs.tests.utils.PropertyConstants;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,6 +18,7 @@ public class InitManager {
                 .pageLoadTimeout(Integer.parseInt(props.getProperty(PropertyConstants.PAGE_LOAD_TIMEOUT)), TimeUnit.SECONDS);
         driverManager.getDriver().manage().timeouts()
                 .implicitlyWait(Integer.parseInt(props.getProperty(PropertyConstants.IMPLICITLY_WAIT)), TimeUnit.SECONDS);
+        driverManager.getDriver().get(props.getProperty(PropertyConstants.BASE_URL));
     }
 
     public static void quitFramework() {
